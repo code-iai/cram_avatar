@@ -15,7 +15,6 @@
              (:file "process-modules" :depends-on ("package"
                                                    "control-avatar"
                                                    "year-two-demo"
-						   "simple-plans"
                                                    "motion-designators"))
              (:file "high-level-plans" :depends-on ("package"
                                                    "motion-designators"

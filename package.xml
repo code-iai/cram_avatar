@@ -53,6 +53,30 @@
   <build_export_depend>cram_language</build_export_depend>
   <exec_depend>cram_language</exec_depend>
 
+  <build_depend>roslisp</build_depend>
+  <build_export_depend>roslisp</build_export_depend>
+  <exec_depend>roslisp</exec_depend>
+
+  <build_depend>iai_avatar_msgs</build_depend>
+  <build_export_depend>iai_avatar_msgs</build_export_depend>
+  <exec_depend>iai_avatar_msgs</exec_depend>
+
+
+  <build_depend>iai_avatar_control</build_depend>
+  <build_export_depend>iai_avatar_control</build_export_depend>
+  <exec_depend>iai_avatar_control</exec_depend>
+
+  <build_depend>cl_transforms</build_depend>
+  <build_export_depend>cl_transforms</build_export_depend>
+  <exec_depend>cl_transforms</exec_depend>
+
+  <build_depend>geometry_msgs</build_depend>
+  <build_export_depend>geometry_msgs</build_export_depend>
+  <exec_depend>geometry_msgs</exec_depend>
+
+  <depend>cram_prolog</depend>
+  <depend>cram_designators</depend>
+  <depend>cram_process_modules</depend>
 
   <!-- The export tag contains other, unspecified, tags -->
   <export>
