@@ -44,6 +44,19 @@
   place
 )
 
+
+(defstruct avatar-press-motion
+  "Represents a pressing motion"
+  button
+)
+
+
+(defstruct avatar-close-motion
+  "Represents a closing motion"
+  door
+)
+
+
 ;; for hand manipulation motions
 (def-fact-group avatar-manipulation-motion-designators (motion-grounding)
   
@@ -55,33 +68,41 @@
   (<- (desig:motion-grounding ?desig (spoon nil))
     (desig-prop ?desig (:type :spooning)))
 
+  ;; pressing
+  (<- (desig:motion-grounding ?desig (press ?motion))
+    (desig-prop ?desig (:type :pressing))
+    (desig-prop ?desig (:button ?button))
+    (lisp-fun make-avatar-press-motion :button ?button ?motion))
+
+  ;; closing
+  (<- (desig:motion-grounding ?desig (close-door ?motion))
+    (desig-prop ?desig (:type :closing))
+    (desig-prop ?desig (:door ?door))
+    (lisp-fun make-avatar-close-motion :door ?door ?motion))
+
   ;; grasping given object and hold
   (<- (desig:motion-grounding ?desig (grasp ?motion))
     (desig-prop ?desig (:type :grasping))
     (desig-prop ?desig (:item ?item))
     (desig-prop ?desig (:hold ?hold))
-    (lisp-fun make-avatar-grasping-motion :item ?item :hold ?hold ?motion)
-  )
+    (lisp-fun make-avatar-grasping-motion :item ?item :hold ?hold ?motion)  )
 
   ;; grasping given object 
   (<- (desig:motion-grounding ?desig (grasp ?motion))
     (desig-prop ?desig (:type :grasping))
     (desig-prop ?desig (:item ?item))
-    (lisp-fun make-avatar-grasping-motion :item ?item ?motion)
-  )
+    (lisp-fun make-avatar-grasping-motion :item ?item ?motion))
 
   ;; grasping and hold
   (<- (desig:motion-grounding ?desig (grasp ?motion))
     (desig-prop ?desig (:type :grasping))
     (desig-prop ?desig (:hold ?hold))
-    (lisp-fun make-avatar-grasping-motion :hold ?hold ?motion)
-  )
+    (lisp-fun make-avatar-grasping-motion :hold ?hold ?motion))
 
   ;; grasping
   (<- (desig:motion-grounding ?desig (grasp ?motion))
     (desig-prop ?desig (:type :grasping))
-    (lisp-fun make-avatar-grasping-motion ?motion)
-  )
+    (lisp-fun make-avatar-grasping-motion ?motion))
 
   ;; placing from given hand at given location
   (<- (desig:motion-grounding ?desig (place-at ?motion))
@@ -105,15 +126,13 @@
     (desig-prop ?desig (:type :placing))
     (desig-prop ?desig (:from_hand ?from_hand))
     (desig-prop ?desig (:place ?place))
-    (lisp-fun make-avatar-placing-motion :from_hand ?from_hand :place ?place ?motion)
-  )
+    (lisp-fun make-avatar-placing-motion :from_hand ?from_hand :place ?place ?motion))
 
   ;; placing on given surface
   (<- (desig:motion-grounding ?desig (place-on ?motion))
     (desig-prop ?desig (:type :placing))
     (desig-prop ?desig (:place ?place))
-    (lisp-fun make-avatar-placing-motion :place ?place ?motion)
-  )
+    (lisp-fun make-avatar-placing-motion :place ?place ?motion))
 
   ;; placing from given hand
   (<- (desig:motion-grounding ?desig (place-on ?motion))

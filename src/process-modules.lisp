@@ -33,6 +33,12 @@
       (spoon
         (let ((cmd "spoon"))
            (call-send-console-command cmd)))
+      (press
+        (let ((cmd (concatenate 'string "press " (avatar-press-motion-button motion))))
+          (call-send-console-command cmd)))
+      (close-door
+        (let ((cmd (concatenate 'string "close " (avatar-close-motion-door motion))))
+          (call-send-console-command cmd)))
       (grasp
         ( let ((hold_str "")
                (objt_str "")
@@ -68,9 +74,7 @@
             (write-to-string x) " " 
             (write-to-string y) " " 
             (write-to-string z))))
-             (call-send-console-command cmd))))
-
-    )))
+             (call-send-console-command cmd)))))))
 
 ;; Help functions
 (defun turn-to (?angle)
@@ -103,6 +107,18 @@
       (let ((target (desig:a motion (type spooning))))
         (pm-execute 'avatar-manipulation target)))))
 
+(defun press (?button)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((target (desig:a motion (type pressing) (button ?button))))
+        (pm-execute 'avatar-manipulation target)))))
+
+(defun close-door (?door)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((target (desig:a motion (type closing) (door ?door))))
+        (pm-execute 'avatar-manipulation target)))))
+
 (defun grasp (&optional ?item)
   ( if ?item
     (top-level
@@ -124,7 +140,6 @@
       (with-process-modules-running (avatar-manipulation)
         (let ((target (desig:a motion (type grasping) (hold t))))
           (pm-execute 'avatar-manipulation target))))))
-
 
 (defun place-object-on (?place &optional ?hand)
   ( if ?hand
