@@ -38,9 +38,4 @@
                 :position (roslisp:make-message
                             'geometry_msgs-msg:point :x x :y y :z z)))
 
-;;(defun call-move-to (x y z)
- ;;(let ((position (cl-transforms:make-3d-vector
-   ;;               x y z)))
-  ;;(call-service *moveTo-srv* 'iai_avatar_msgs-srv:MoveTo
-    ;;            :position (cl-transforms-stamped:to-msg position))))
 
