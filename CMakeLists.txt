@@ -8,7 +8,10 @@ project(cram_avatar)
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
 ## is used, also find other catkin packages
 find_package(catkin REQUIRED COMPONENTS
-  cram_language
+   cram_language
+   actionlib
+   roslisp
+   iai_avatar_msgs
 )
 
 ## System dependencies are found with CMake's conventions

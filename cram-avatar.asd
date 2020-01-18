@@ -1,7 +1,8 @@
 (defsystem cram-avatar
-  :depends-on (roslisp cram-language iai_avatar_msgs-srv
+  :depends-on (roslisp cram-language actionlib 
                cl-transforms geometry_msgs-msg
-               cram-designators cram-prolog
+               iai_avatar_msgs-msg iai_avatar_msgs-srv
+               cram-designators cram-prolog actionlib_msgs-msg
                cram-process-modules cram-language-designator-support)
 
   :components
@@ -19,5 +20,6 @@
              (:file "high-level-plans" :depends-on ("package"
                                                    "motion-designators"
                                                    "action-designators"
-                                                   "process-modules"))))))
+                                                   "process-modules"))
+             (:file "qna-action-client" :depends-on ("package"))))))
 
