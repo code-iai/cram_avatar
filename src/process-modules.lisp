@@ -18,6 +18,19 @@
       (turn
         (let ((cmd (concatenate 'string "turn to " (write-to-string (avatar-motion-angle motion)))))
            (call-send-console-command cmd)))
+      (unlook
+        (let ((cmd "look to front"))
+           (call-send-console-command cmd)))
+      (look
+        (let ((x  (avatar-look-motion-x_val  motion))
+              (y  (avatar-look-motion-y_val  motion))
+              (z  (avatar-look-motion-z_val  motion)))
+
+          (let ((cmd (concatenate 'string "look to "  
+            (write-to-string x) " " 
+            (write-to-string y) " " 
+            (write-to-string z))))
+             (call-send-console-command cmd))))
     )))
 
 ;; Process modules for hand manipulations
@@ -35,6 +48,9 @@
            (call-send-console-command cmd)))
       (press
         (let ((cmd (concatenate 'string "press " (avatar-press-motion-button motion))))
+          (call-send-console-command cmd)))
+      (pour
+        (let ((cmd (concatenate 'string "pour over " (avatar-pour-motion-target motion))))
           (call-send-console-command cmd)))
       (close-door
         (let ((cmd (concatenate 'string "close " (avatar-close-motion-door motion))))
@@ -74,7 +90,8 @@
             (write-to-string x) " " 
             (write-to-string y) " " 
             (write-to-string z))))
-             (call-send-console-command cmd)))))))
+             (call-send-console-command cmd))))
+    )))
 
 ;; Help functions
 (defun turn-to (?angle)
@@ -95,6 +112,18 @@
       (let ((target (desig:a motion (type moving) (path ?path))))
         (pm-execute 'avatar-navigation target)))))
 
+(defun look-to (?x ?y ?z)
+  (top-level
+    (with-process-modules-running (avatar-navigation)
+      (let ((target (desig:a motion (type looking) (x_val ?x) (y_val ?y) (z_val ?z))))
+         (pm-execute 'avatar-navigation target)))))
+
+(defun reset-look ()
+  (top-level
+    (with-process-modules-running (avatar-navigation)
+      (let ((target (desig:a motion (type looking))))
+        (pm-execute 'avatar-navigation target)))))
+
 (defun cut ()
   (top-level
     (with-process-modules-running (avatar-manipulation)
@@ -112,6 +141,12 @@
     (with-process-modules-running (avatar-manipulation)
       (let ((target (desig:a motion (type pressing) (button ?button))))
         (pm-execute 'avatar-manipulation target)))))
+
+(defun pour-over (?target)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((trgt (desig:a motion (type pouring) (target ?target))))
+        (pm-execute 'avatar-manipulation trgt)))))
 
 (defun close-door (?door)
   (top-level

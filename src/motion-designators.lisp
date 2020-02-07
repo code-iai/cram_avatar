@@ -5,6 +5,10 @@
   x_val y_val z_val
   path
   angle)
+
+(defstruct avatar-look-motion
+  "Represents a motion."
+  x_val y_val z_val)
  
 ;; for each kind of motion, check for and extract the necessary info
 (def-fact-group avatar-motion-designators (motion-grounding)
@@ -27,15 +31,25 @@
   (<- (desig:motion-grounding ?desig (turn ?motion))
     (desig-prop ?desig (:type :moving))
     (desig-prop ?desig (:angle ?angle))
-    (lisp-fun make-avatar-motion :angle ?angle ?motion)))
+    (lisp-fun make-avatar-motion :angle ?angle ?motion))
 
+  ;; look
+  (<- (desig:motion-grounding ?desig (look ?motion))
+    (desig-prop ?desig (:type :looking))
+    (desig-prop ?desig (:x_val ?x_val))
+    (desig-prop ?desig (:y_val ?y_val))
+    (desig-prop ?desig (:z_val ?z_val))
+    (lisp-fun make-avatar-look-motion :x_val ?x_val :y_val ?y_val :z_val ?z_val ?motion))
+
+  ;; reset-look
+  (<- (desig:motion-grounding ?desig (unlook nil))
+    (desig-prop ?desig (:type :looking))))
 
 (defstruct avatar-grasping-motion
   "Represents a grasping motion"
   item
   hold
 )
-
 
 (defstruct avatar-placing-motion
   "Represents a placing motion"
@@ -44,12 +58,15 @@
   place
 )
 
-
 (defstruct avatar-press-motion
   "Represents a pressing motion"
   button
 )
 
+(defstruct avatar-pour-motion
+  "Represents a pouring motion"
+  target
+)
 
 (defstruct avatar-close-motion
   "Represents a closing motion"
@@ -73,6 +90,12 @@
     (desig-prop ?desig (:type :pressing))
     (desig-prop ?desig (:button ?button))
     (lisp-fun make-avatar-press-motion :button ?button ?motion))
+
+  ;; pouring
+  (<- (desig:motion-grounding ?desig (pour ?motion))
+    (desig-prop ?desig (:type :pouring))
+    (desig-prop ?desig (:target ?target))
+    (lisp-fun make-avatar-pour-motion :target ?target ?motion))
 
   ;; closing
   (<- (desig:motion-grounding ?desig (close-door ?motion))
