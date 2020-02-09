@@ -3,7 +3,8 @@
                cl-transforms geometry_msgs-msg
                iai_avatar_msgs-msg iai_avatar_msgs-srv
                cram-designators cram-prolog actionlib_msgs-msg
-               cram-process-modules cram-language-designator-support)
+               cram-process-modules cram-language-designator-support
+               cram-executive)
 
   :components
   ((:module "src"
