@@ -18,10 +18,10 @@
       (turn
         (let ((cmd (concatenate 'string "turn to " (write-to-string (avatar-motion-angle motion)))))
            (call-send-console-command cmd)))
-      (unlook
-        (let ((cmd "look to front"))
-           (call-send-console-command cmd)))
-      (look
+      (look-at
+        (let ((cmd (concatenate 'string "look to " motion)))
+          (call-send-console-command cmd)))
+      (look-to
         (let ((x  (avatar-look-motion-x_val  motion))
               (y  (avatar-look-motion-y_val  motion))
               (z  (avatar-look-motion-z_val  motion)))
@@ -116,6 +116,12 @@
   (top-level
     (with-process-modules-running (avatar-navigation)
       (let ((target (desig:a motion (type looking) (x_val ?x) (y_val ?y) (z_val ?z))))
+         (pm-execute 'avatar-navigation target)))))
+
+(defun look-at (?object)
+  (top-level
+    (with-process-modules-running (avatar-navigation)
+      (let ((target (desig:a motion (type looking) (target ?object))))
          (pm-execute 'avatar-navigation target)))))
 
 (defun reset-look ()

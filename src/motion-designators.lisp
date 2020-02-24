@@ -33,17 +33,18 @@
     (desig-prop ?desig (:angle ?angle))
     (lisp-fun make-avatar-motion :angle ?angle ?motion))
 
-  ;; look
-  (<- (desig:motion-grounding ?desig (look ?motion))
+  ;; look to
+  (<- (desig:motion-grounding ?desig (look-to ?motion))
     (desig-prop ?desig (:type :looking))
     (desig-prop ?desig (:x_val ?x_val))
     (desig-prop ?desig (:y_val ?y_val))
     (desig-prop ?desig (:z_val ?z_val))
     (lisp-fun make-avatar-look-motion :x_val ?x_val :y_val ?y_val :z_val ?z_val ?motion))
 
-  ;; reset-look
-  (<- (desig:motion-grounding ?desig (unlook nil))
-    (desig-prop ?desig (:type :looking))))
+  ;; look at
+  (<- (desig:motion-grounding ?desig (look-at ?target))
+    (desig-prop ?desig (:type   :looking))
+    (desig-prop ?desig (:target ?target))))
 
 (defstruct avatar-grasping-motion
   "Represents a grasping motion"
@@ -85,7 +86,7 @@
   (<- (desig:motion-grounding ?desig (spoon nil))
     (desig-prop ?desig (:type :spooning)))
 
-  ;; pressing
+  ;; pressing button
   (<- (desig:motion-grounding ?desig (press ?motion))
     (desig-prop ?desig (:type :pressing))
     (desig-prop ?desig (:button ?button))
@@ -97,7 +98,7 @@
     (desig-prop ?desig (:target ?target))
     (lisp-fun make-avatar-pour-motion :target ?target ?motion))
 
-  ;; closing
+  ;; closing door
   (<- (desig:motion-grounding ?desig (close-door ?motion))
     (desig-prop ?desig (:type :closing))
     (desig-prop ?desig (:door ?door))
