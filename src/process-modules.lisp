@@ -52,6 +52,12 @@
       (pour
         (let ((cmd (concatenate 'string "pour over " (avatar-pour-motion-target motion))))
           (call-send-console-command cmd)))
+      (fork
+        (let ((cmd (concatenate 'string "fork " (avatar-pour-motion-target motion))))
+          (call-send-console-command cmd)))
+      (feed
+        (let ((cmd (concatenate 'string "feed " (avatar-pour-motion-target motion))))
+          (call-send-console-command cmd)))
       (close-door
         (let ((cmd (concatenate 'string "close " (avatar-close-motion-door motion))))
           (call-send-console-command cmd)))
@@ -152,6 +158,18 @@
   (top-level
     (with-process-modules-running (avatar-manipulation)
       (let ((trgt (desig:a motion (type pouring) (target ?target))))
+        (pm-execute 'avatar-manipulation trgt)))))
+
+(defun fork (?target)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((trgt (desig:a motion (type forking) (target ?target))))
+        (pm-execute 'avatar-manipulation trgt)))))
+
+(defun feed-person (?target)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((trgt (desig:a motion (type feeding) (target ?target))))
         (pm-execute 'avatar-manipulation trgt)))))
 
 (defun close-door (?door)

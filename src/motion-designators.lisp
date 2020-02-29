@@ -69,6 +69,16 @@
   target
 )
 
+(defstruct avatar-fork-motion
+  "Represents a forking motion"
+  target
+)
+
+(defstruct avatar-feed-motion
+  "Represents a feeding motion"
+  target
+)
+
 (defstruct avatar-close-motion
   "Represents a closing motion"
   door
@@ -97,6 +107,18 @@
     (desig-prop ?desig (:type :pouring))
     (desig-prop ?desig (:target ?target))
     (lisp-fun make-avatar-pour-motion :target ?target ?motion))
+
+  ;; forking
+  (<- (desig:motion-grounding ?desig (fork ?motion))
+    (desig-prop ?desig (:type :forking))
+    (desig-prop ?desig (:target ?target))
+    (lisp-fun make-avatar-fork-motion :target ?target ?motion))
+
+  ;; feeding
+  (<- (desig:motion-grounding ?desig (feed ?motion))
+    (desig-prop ?desig (:type :feeding))
+    (desig-prop ?desig (:target ?target))
+    (lisp-fun make-avatar-feed-motion :target ?target ?motion))
 
   ;; closing door
   (<- (desig:motion-grounding ?desig (close-door ?motion))
