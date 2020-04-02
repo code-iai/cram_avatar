@@ -53,10 +53,10 @@
         (let ((cmd (concatenate 'string "pour over " (avatar-pour-motion-target motion))))
           (call-send-console-command cmd)))
       (fork
-        (let ((cmd (concatenate 'string "fork " (avatar-pour-motion-target motion))))
+        (let ((cmd (concatenate 'string "fork " (avatar-fork-motion-target motion))))
           (call-send-console-command cmd)))
       (feed
-        (let ((cmd (concatenate 'string "feed " (avatar-pour-motion-target motion))))
+        (let ((cmd (concatenate 'string "feed " (avatar-feed-motion-target motion))))
           (call-send-console-command cmd)))
       (close-door
         (let ((cmd (concatenate 'string "close " (avatar-close-motion-door motion))))
