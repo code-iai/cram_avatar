@@ -58,6 +58,18 @@
       (feed
         (let ((cmd (concatenate 'string "feed " (avatar-feed-motion-target motion))))
           (call-send-console-command cmd)))
+      (point-book
+        (let ((cmd (concatenate 'string "point book " (avatar-point-book-motion-book motion))))
+          (call-send-console-command cmd)))
+      (pass-page
+        ( let ((cmd_str "pass page ")
+	       (book (avatar-pass-page-motion-book motion))
+               (last (avatar-pass-page-motion-last motion)))
+
+          (when last (setq cmd_str "close book "))
+
+          (let ((cmd (concatenate 'string cmd_str book)))
+             (call-send-console-command cmd))))
       (close-door
         (let ((cmd (concatenate 'string "close " (avatar-close-motion-door motion))))
           (call-send-console-command cmd)))
@@ -170,6 +182,24 @@
   (top-level
     (with-process-modules-running (avatar-manipulation)
       (let ((trgt (desig:a motion (type feeding) (target ?target))))
+        (pm-execute 'avatar-manipulation trgt)))))
+
+(defun point-book (?book)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((trgt (desig:a motion (type pointing-book) (book ?book))))
+        (pm-execute 'avatar-manipulation trgt)))))
+
+(defun close-book (?book)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((trgt (desig:a motion (type passing-page) (book ?book) (last t))))
+        (pm-execute 'avatar-manipulation trgt)))))
+
+(defun pass-page (?book)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((trgt (desig:a motion (type passing-page) (book ?book) (last nil))))
         (pm-execute 'avatar-manipulation trgt)))))
 
 (defun close-door (?door)

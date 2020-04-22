@@ -79,6 +79,17 @@
   target
 )
 
+(defstruct avatar-point-book-motion
+  "Represents a pointing motion for reading"
+  book
+)
+
+(defstruct avatar-pass-page-motion
+  "Represents a passing page motion"
+  book
+  last
+)
+
 (defstruct avatar-close-motion
   "Represents a closing motion"
   door
@@ -120,6 +131,19 @@
     (desig-prop ?desig (:target ?target))
     (lisp-fun make-avatar-feed-motion :target ?target ?motion))
 
+  ;; pointing book
+  (<- (desig:motion-grounding ?desig (point-book ?motion))
+    (desig-prop ?desig (:type :pointing-book))
+    (desig-prop ?desig (:book ?book))
+    (lisp-fun make-avatar-point-book-motion :book ?book ?motion))
+
+  ;; passing page
+  (<- (desig:motion-grounding ?desig (pass-page ?motion))
+    (desig-prop ?desig (:type :passing-page))
+    (desig-prop ?desig (:book ?book))
+    (desig-prop ?desig (:last ?last))
+    (lisp-fun make-avatar-pass-page-motion :book ?book :last ?last ?motion))
+
   ;; closing door
   (<- (desig:motion-grounding ?desig (close-door ?motion))
     (desig-prop ?desig (:type :closing))
@@ -131,7 +155,7 @@
     (desig-prop ?desig (:type :grasping))
     (desig-prop ?desig (:item ?item))
     (desig-prop ?desig (:hold ?hold))
-    (lisp-fun make-avatar-grasping-motion :item ?item :hold ?hold ?motion)  )
+    (lisp-fun make-avatar-grasping-motion :item ?item :hold ?hold ?motion))
 
   ;; grasping given object 
   (<- (desig:motion-grounding ?desig (grasp ?motion))
