@@ -49,6 +49,7 @@
 (defstruct avatar-grasping-motion
   "Represents a grasping motion"
   item
+  hand
   hold
 )
 
@@ -154,25 +155,16 @@
   (<- (desig:motion-grounding ?desig (grasp ?motion))
     (desig-prop ?desig (:type :grasping))
     (desig-prop ?desig (:item ?item))
+    (desig-prop ?desig (:hand ?hand))
     (desig-prop ?desig (:hold ?hold))
-    (lisp-fun make-avatar-grasping-motion :item ?item :hold ?hold ?motion))
+    (lisp-fun make-avatar-grasping-motion :item ?item :hand ?hand :hold ?hold ?motion))
 
   ;; grasping given object 
   (<- (desig:motion-grounding ?desig (grasp ?motion))
     (desig-prop ?desig (:type :grasping))
     (desig-prop ?desig (:item ?item))
-    (lisp-fun make-avatar-grasping-motion :item ?item ?motion))
-
-  ;; grasping and hold
-  (<- (desig:motion-grounding ?desig (grasp ?motion))
-    (desig-prop ?desig (:type :grasping))
-    (desig-prop ?desig (:hold ?hold))
-    (lisp-fun make-avatar-grasping-motion :hold ?hold ?motion))
-
-  ;; grasping
-  (<- (desig:motion-grounding ?desig (grasp ?motion))
-    (desig-prop ?desig (:type :grasping))
-    (lisp-fun make-avatar-grasping-motion ?motion))
+    (desig-prop ?desig (:hand ?hand))
+    (lisp-fun make-avatar-grasping-motion :item ?item :hand ?hand ?motion))
 
   ;; placing from given hand at given location
   (<- (desig:motion-grounding ?desig (place-at ?motion))

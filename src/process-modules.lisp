@@ -75,14 +75,13 @@
           (call-send-console-command cmd)))
       (grasp
         ( let ((hold_str "")
-               (objt_str "")
                (item (avatar-grasping-motion-item motion))
+               (hand (avatar-grasping-motion-hand motion))
                (hold (avatar-grasping-motion-hold motion)))
 
-          (when item (setq objt_str item))
           (when hold (setq hold_str "hold"))
 
-          (let ((cmd (concatenate 'string "grasp " objt_str " " hold_str)))
+          (let ((cmd (concatenate 'string "grasp " hand " " item " " hold_str)))
              (call-send-console-command cmd))))
       (place-on
         ( let ((hand_str "")
@@ -208,27 +207,17 @@
       (let ((target (desig:a motion (type closing) (door ?door))))
         (pm-execute 'avatar-manipulation target)))))
 
-(defun grasp (&optional ?item)
-  ( if ?item
-    (top-level
-      (with-process-modules-running (avatar-manipulation)
-        (let ((target (desig:a motion (type grasping) (item ?item))))
-          (pm-execute 'avatar-manipulation target))))
-    (top-level
-      (with-process-modules-running (avatar-manipulation)
-        (let ((target (desig:a motion (type grasping))))
-          (pm-execute 'avatar-manipulation target))))))
+(defun grasp (?item ?hand)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((target (desig:a motion (type grasping) (item ?item) (hand ?hand))))
+        (pm-execute 'avatar-manipulation target)))))
 
-(defun grasp_and_hold (&optional ?item)
-  ( if ?item
-    (top-level
-      (with-process-modules-running (avatar-manipulation)
-        (let ((target (desig:a motion (type grasping) (item ?item) (hold t))))
-          (pm-execute 'avatar-manipulation target))))
-    (top-level
-      (with-process-modules-running (avatar-manipulation)
-        (let ((target (desig:a motion (type grasping) (hold t))))
-          (pm-execute 'avatar-manipulation target))))))
+(defun grasp_and_hold (?item ?hand)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((target (desig:a motion (type grasping) (item ?item) (hand ?hand) (hold t))))
+        (pm-execute 'avatar-manipulation target)))))
 
 (defun place-object-on (?place &optional ?hand)
   ( if ?hand
