@@ -16,11 +16,11 @@
 
 ;; Running Ropha Scenario
 (defun run-ropha-scenario ()
-  ( let ((?plate-desig (desig:an object (type plate) (name "SM_ClassicPlate16cm_11")))
-         (?fork-desig (desig:an object (type cutlery) (name "SM_DinnerFork_2")))
-         (?food-desig (desig:an object (type waffle) (name "SM_Waffle_2")))
-         (?book-desig (desig:an object (type book) (name "BP_Newspaper_2")))
-         (?person "ThirdPersonAvatar_sitting_2"))
+  ( let ((?plate-desig (desig:an object (type plate) (name "SM_ClassicPlate16cm_1")))
+         (?fork-desig (desig:an object (type cutlery) (name "SM_DinnerFork_0")))
+         (?food-desig (desig:an object (type waffle) (name "SM_Waffle_3")))
+         (?book-desig (desig:an object (type book) (name "BP_Newspaper_0")))
+         (?person "ThirdPersonAvatar_sitting_0"))
 
     (top-level
       (with-process-modules-running (avatar-navigation avatar-manipulation)
