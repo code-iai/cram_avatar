@@ -32,7 +32,12 @@
             (make-qna-action-goal text)))
       (roslisp:ros-info (qna-action-client) "QnA Action Finished.")
       (values result status)
-      result))
+      (with-fields (answer)
+         (value result)
+         answer
+      )
+   )
+)
 
 (defun test-send-question ()
    "A function to test sending questions."
