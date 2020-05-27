@@ -1,5 +1,9 @@
 (in-package :aia)
 
+(defvar *sync-state* (make-fluent :name :sync-state) "current sync state between robot and avatar")
+(defvar *sync-sub* nil "sync ROS subscriber")
+(defvar *sync-pub* nil "sync ROS publisher")
+
 (defvar *avatar-pose* (make-fluent :name :avatar-pose) "current pose of avatar")
 (defvar *pose-sub* nil "pose ROS subscriber")
 
@@ -15,10 +19,22 @@
   (setf *command-srv* (concatenate 'string "/" name "/send_command"))
   (setf *move-to-srv* (concatenate 'string "/" name "/move_to"))
   (setf *semantic-cam-srv* (concatenate 'string "/" name "/semantic_camera"))
+
   (setf *pose-sub* (subscribe (format nil "~a/Pose" name)"geometry_msgs/Pose"
                               #'pose-cb))
-  (setf *cmd-vel-pub* (advertise (format nil "/twistmsg")
-                                 "geometry_msgs/Twist")))
+
+  (setf *sync-sub* (subscribe (format nil "avatar_robot/Sync")"std_msgs/Int32"
+                              #'sync-cb))
+
+  (setf *sync-pub* (advertise (format nil "avatar_robot/Sync")"std_msgs/Int32")))
+
+(defun send-sync-state (state)
+  "Function to send sync state"
+  (publish *sync-pub* (make-message "std_msgs/Int32" :data state)))
+
+(defun sync-cb (msg)
+  "Callback for sync values. Called by the sync topic subscriber."
+  (setf (value *sync-state*) msg))
 
 (defun pose-cb (msg)
   "Callback for pose values. Called by the pose topic subscriber."

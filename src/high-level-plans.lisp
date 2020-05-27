@@ -66,12 +66,24 @@ ing) (target ?target)))
 (defun read-feed (&key ((:person ?person)) ((:book ?book)) ((:food ?food)) ((:on ?plate)) ((:with ?cutlery)) &allow-other-keys)
     (let ((?place_1 *plate_place*) (?place_2 *newspaper_place*) (?place_3 *chair_place*)
           (?rot_2 *newspaper_rot*) (?rot_3 *chair_rot*))
+
+      ;; Moving plate to kitchen island
       (exe:perform (desig:an action (type moving-object-to) (object ?plate) (to ?place_1)))
+
+      ;; Inform step is done
+      (send-sync-state 1)
+
+      ;; Go read news paper
       (exe:perform (desig:an action (type moving-on-path) (path ?place_2)))
       (sleep 4)
       (exe:perform (desig:an action (type turning-to-angle) (angle ?rot_2)))
       (sleep 2)
       (exe:perform (desig:an action (type reading-book) (book ?book)))
+
+      ;; Wait for step 2
+      (wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
+
+      ;; Feed aretaker
       (exe:perform (desig:an action (type moving-on-path) (path ?place_3)))
       (sleep 2)
       (exe:perform (desig:an action (type turning-to-angle) (angle ?rot_3)))
