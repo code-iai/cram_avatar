@@ -23,10 +23,16 @@
   (setf *pose-sub* (subscribe (format nil "~a/Pose" name)"geometry_msgs/Pose"
                               #'pose-cb))
 
-  (setf *sync-sub* (subscribe (format nil "avatar_robot/Sync")"std_msgs/Int32"
-                              #'sync-cb))
+  (init-sub)
 
   (setf *sync-pub* (advertise (format nil "avatar_robot/Sync")"std_msgs/Int32")))
+
+(defun init-sub ()
+  (setf *sync-sub* (subscribe (format nil "avatar_robot/Sync")"std_msgs/Int32"
+                              #'sync-cb)))
+(defun wait-for-sync-state (state)
+      (wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) state))
+  )
 
 (defun send-sync-state (state)
   "Function to send sync state"
@@ -59,5 +65,3 @@
 (defun call-semantic-camera-service ()
   "Function to call the semantic camera service."
   (call-service *semantic-cam-srv* 'iai_avatar_msgs-srv:SemanticCamera))
-
-
