@@ -1,6 +1,6 @@
 (in-package :aia)
 
-(defvar *sync-state* (make-fluent :name :sync-state) "current sync state between robot and avatar")
+(defvar *sync-state* (make-fluent :name :sync-state :value 0) "current sync state between robot and avatar")
 (defvar *sync-sub* nil "sync ROS subscriber")
 (defvar *sync-pub* nil "sync ROS publisher")
 
