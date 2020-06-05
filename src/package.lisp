@@ -5,6 +5,10 @@
   (:import-from :cram-prolog :def-fact-group :<- :lisp-fun)
   (:export
    :call-qna-action
+   :init-sub
+   :wait-for-sync-state
    :send-sync-state
+   :*sync-state*
+   :*sync-sub*
    )
   )
