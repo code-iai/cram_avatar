@@ -78,6 +78,8 @@ ing) (target ?target)))
       (sleep 4)
       (exe:perform (desig:an action (type turning-to-angle) (angle ?rot_2)))
       (sleep 2)
+      (pm-execute 'avatar-navigation (desig:a motion (type looking) (target ?person)))
+      (sleep 4)
       (exe:perform (desig:an action (type reading-book) (book ?book)))
 
       ;; Wait for step 2
@@ -94,18 +96,24 @@ ing) (target ?target)))
 
 ;; Interpreting read book action
 (defun read-book (&key ((:book ?book)) &allow-other-keys)
+    (exe:perform (desig:an action (type reading-page-text) (book ?book) (page "left")))
+    (sleep 390)
+    (exe:perform (desig:an action (type reading-page-text) (book ?book) (page "right")))
+    (sleep 390)
     (exe:perform (desig:an action (type passing-one-page) (book ?book)))
     (sleep 5)
-    (exe:perform (desig:an action (type reading-text-line) (book ?book)))
-    (sleep 8)
+    (exe:perform (desig:an action (type reading-page-text) (book ?book) (page "left")))
+    (sleep 390)
+    (exe:perform (desig:an action (type reading-page-text) (book ?book) (page "right")))
+    (sleep 390)
     (exe:perform (desig:an action (type closing-book) (book ?book)))
     (sleep 6)
 )
 
 ;; Interpreting read line action
-(defun read-text-line (&key ((:book ?book)) &allow-other-keys)
+(defun read-page-text (&key ((:book ?book)) ((:page ?page)) &allow-other-keys)
     (let ((?target (desig:desig-prop-value ?book :name)))
-      (pm-execute 'avatar-manipulation (desig:a motion (type pointing-book) (book ?target)))
+      (pm-execute 'avatar-manipulation (desig:a motion (type reading-page) (book ?target) (page ?page)))
     )
 )
 

@@ -58,8 +58,10 @@
       (feed
         (let ((cmd (concatenate 'string "feed " (avatar-feed-motion-target motion))))
           (call-send-console-command cmd)))
-      (point-book
-        (let ((cmd (concatenate 'string "point book " (avatar-point-book-motion-book motion))))
+      (read-page
+        (let ((cmd (concatenate 'string "read " 
+		(avatar-read-page-motion-page motion) " "
+		(avatar-read-page-motion-book motion))))
           (call-send-console-command cmd)))
       (pass-page
         ( let ((cmd_str "pass page ")
@@ -183,10 +185,10 @@
       (let ((trgt (desig:a motion (type feeding) (target ?target))))
         (pm-execute 'avatar-manipulation trgt)))))
 
-(defun point-book (?book)
+(defun read-book (?book ?page)
   (top-level
     (with-process-modules-running (avatar-manipulation)
-      (let ((trgt (desig:a motion (type pointing-book) (book ?book))))
+      (let ((trgt (desig:a motion (type reading-book) (book ?book) (page ?page))))
         (pm-execute 'avatar-manipulation trgt)))))
 
 (defun close-book (?book)

@@ -28,9 +28,10 @@
     (desig-prop ?desig (:book ?book)))
 
   ;; Point book
-  (<- (desig:action-grounding ?desig (read-text-line ?desig))
-    (desig-prop ?desig (:type   :reading-text-line))
-    (desig-prop ?desig (:book ?book)))
+  (<- (desig:action-grounding ?desig (read-page-text ?desig))
+    (desig-prop ?desig (:type   :reading-page-text))
+    (desig-prop ?desig (:book ?book))
+    (desig-prop ?desig (:page ?page)))
 
   ;; Pass page
   (<- (desig:action-grounding ?desig (pass-one-page ?desig))

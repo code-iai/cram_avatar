@@ -80,9 +80,10 @@
   target
 )
 
-(defstruct avatar-point-book-motion
+(defstruct avatar-read-page-motion
   "Represents a pointing motion for reading"
   book
+  page
 )
 
 (defstruct avatar-pass-page-motion
@@ -132,11 +133,12 @@
     (desig-prop ?desig (:target ?target))
     (lisp-fun make-avatar-feed-motion :target ?target ?motion))
 
-  ;; pointing book
-  (<- (desig:motion-grounding ?desig (point-book ?motion))
-    (desig-prop ?desig (:type :pointing-book))
+  ;; reading page
+  (<- (desig:motion-grounding ?desig (read-page ?motion))
+    (desig-prop ?desig (:type :reading-page))
     (desig-prop ?desig (:book ?book))
-    (lisp-fun make-avatar-point-book-motion :book ?book ?motion))
+    (desig-prop ?desig (:page ?page))
+    (lisp-fun make-avatar-read-page-motion :book ?book :page ?page ?motion))
 
   ;; passing page
   (<- (desig:motion-grounding ?desig (pass-page ?motion))
