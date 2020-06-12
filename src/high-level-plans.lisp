@@ -83,7 +83,7 @@ ing) (target ?target)))
       (exe:perform (desig:an action (type reading-book) (book ?book)))
 
       ;; Wait for step 2
-      (wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
+      ;;(wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
 
       ;; Feed aretaker
       (exe:perform (desig:an action (type moving-on-path) (path ?place_3)))
@@ -96,8 +96,6 @@ ing) (target ?target)))
 
 ;; Interpreting read book action
 (defun read-book (&key ((:book ?book)) &allow-other-keys)
-    (exe:perform (desig:an action (type reading-page-text) (book ?book) (page "left")))
-    (sleep 385)
     (exe:perform (desig:an action (type reading-page-text) (book ?book) (page "right")))
     (sleep 385)
     (exe:perform (desig:an action (type passing-one-page) (book ?book)))
