@@ -11,7 +11,7 @@
 (defvar *chair_place*     "table_chair"     "Path name to get to the table and chair place")
 
 (defvar *plate_rot*     180  "Rotation to face the kitchen island")
-(defvar *newspaper_rot* -90 "Rotation to face the table at newspaper place")
+(defvar *newspaper_rot* -10 "Rotation to face the table at newspaper place")
 (defvar *chair_rot*     -90     "Rotation to face the table and chair place")
 
 ;; Running Ropha Scenario
@@ -78,18 +78,20 @@ ing) (target ?target)))
       (sleep 4)
       (exe:perform (desig:an action (type turning-to-angle) (angle ?rot_2)))
       (sleep 2)
+      (call-send-console-command "sit")
+      (sleep 2)
       (pm-execute 'avatar-navigation (desig:a motion (type looking) (target ?person)))
       (sleep 4)
       (exe:perform (desig:an action (type reading-book) (book ?book)))
 
       ;; Wait for step 2
-      ;;(wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
+      (wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
 
-      ;; Feed aretaker
-      (exe:perform (desig:an action (type moving-on-path) (path ?place_3)))
-      (sleep 2)
-      (exe:perform (desig:an action (type turning-to-angle) (angle ?rot_3)))
-      (sleep 1)
+      ;; Feed caretaker
+      ;;(exe:perform (desig:an action (type moving-on-path) (path ?place_3)))
+      ;;(sleep 2)
+      ;;(exe:perform (desig:an action (type turning-to-angle) (angle ?rot_3)))
+      ;;(sleep 1)
       (exe:perform (desig:an action (type feeding-caretaker) (person ?person) (cutlery ?cutlery) (food ?food)))
     )
 )
