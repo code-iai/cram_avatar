@@ -83,7 +83,9 @@ ing) (target ?target)))
       (pm-execute 'avatar-navigation (desig:a motion (type looking) (target ?person)))
       (sleep 4)
       (exe:perform (desig:an action (type reading-book) (book ?book)))
-
+      (let ((cmd (concatenate 'string "slide right " (desig:desig-prop-value ?book :name))))
+          (call-send-console-command cmd))
+      (sleep 2)
       ;; Wait for step 2
       (wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
 
