@@ -82,12 +82,12 @@ ing) (target ?target)))
       (sleep 2)
       (pm-execute 'avatar-navigation (desig:a motion (type looking) (target ?person)))
       (sleep 4)
-      (exe:perform (desig:an action (type reading-book) (book ?book)))
+      ;;(exe:perform (desig:an action (type reading-book) (book ?book)))
       (let ((cmd (concatenate 'string "slide right " (desig:desig-prop-value ?book :name))))
           (call-send-console-command cmd))
-      (sleep 2)
+      (sleep 6)
       ;; Wait for step 2
-      (wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
+      ;;(wait-for (eq (fl-funcall #'std_msgs-msg:data *sync-state*) 2))
 
       ;; Feed caretaker
       ;;(exe:perform (desig:an action (type moving-on-path) (path ?place_3)))
@@ -150,6 +150,8 @@ ing) (target ?target)))
 ;;    (sleep 3)
 ;;    (exe:perform (desig:an action (type feeding-person) (person ?person)))
 ;;    (sleep 3)
+    (exe:perform (desig:an action (type hand-reaching) (hand ?hand) (pos "holding_position")))
+    (sleep 2)
     (exe:perform (desig:an action (type putting-down) (from-hand ?hand) (at ?loc_vector)))
     (sleep 3)
   )
@@ -191,9 +193,13 @@ ing) (target ?target)))
     (pm-execute 'avatar-navigation (desig:a motion (type moving) (path ?path)))
 )
 
+;; Interpreting hand reaching action
+(defun hand-reach (&key ((:hand ?hand)) ((:pos ?pos)) &allow-other-keys)	
+    (pm-execute 'avatar-manipulation (desig:a motion (type reaching-w-hand) (hand ?hand) (pos ?pos)))
+)
+
 ;; Interpreting picking up action
-(defun pick-up (&key ((:object ?object)) ((:with-hand ?with-hand)) &allow-other-keys)
-    
+(defun pick-up (&key ((:object ?object)) ((:with-hand ?with-hand)) &allow-other-keys)  
     (let ((?target  (desig:desig-prop-value ?object :name)))
       (pm-execute 'avatar-manipulation (desig:a motion (type grasping) (item ?target) (hand ?with-hand) (hold t))))
 )

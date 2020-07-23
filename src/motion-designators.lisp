@@ -97,6 +97,11 @@
   door
 )
 
+(defstruct avatar-hand-reach-motion
+  "Represents a hand reaching motion"
+  hand
+  pos
+)
 
 ;; for hand manipulation motions
 (def-fact-group avatar-manipulation-motion-designators (motion-grounding)
@@ -152,6 +157,13 @@
     (desig-prop ?desig (:type :closing))
     (desig-prop ?desig (:door ?door))
     (lisp-fun make-avatar-close-motion :door ?door ?motion))
+
+  ;; hand reach
+  (<- (desig:motion-grounding ?desig (reach-w-hand ?motion))
+    (desig-prop ?desig (:type :reaching-w-hand))
+    (desig-prop ?desig (:hand ?hand))
+    (desig-prop ?desig (:pos ?pos))
+    (lisp-fun make-avatar-hand-reach-motion :hand ?hand :pos ?pos ?motion))
 
   ;; grasping given object and hold
   (<- (desig:motion-grounding ?desig (grasp ?motion))

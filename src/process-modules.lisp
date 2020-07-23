@@ -75,6 +75,11 @@
       (close-door
         (let ((cmd (concatenate 'string "close " (avatar-close-motion-door motion))))
           (call-send-console-command cmd)))
+      (reach-w-hand
+        (let ((cmd (concatenate 'string (avatar-hand-reach-motion-hand motion)
+					" hand reach "
+					(avatar-hand-reach-motion-pos motion))))
+           (call-send-console-command cmd)))
       (grasp
         ( let ((hold_str "")
                (item (avatar-grasping-motion-item motion))
@@ -148,6 +153,12 @@
     (with-process-modules-running (avatar-navigation)
       (let ((target (desig:a motion (type looking))))
         (pm-execute 'avatar-navigation target)))))
+
+(defun reach-with-hand (?hand ?pos)
+  (top-level
+    (with-process-modules-running (avatar-manipulation)
+      (let ((target (desig:a motion (type reaching-w-hand) (hand ?hand) (pos ?pos))))
+        (pm-execute 'avatar-manipulation target)))))
 
 (defun cut ()
   (top-level

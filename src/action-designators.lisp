@@ -71,6 +71,12 @@
     (desig-prop ?desig (:type   :turning-to-angle))
     (desig-prop ?desig (:angle ?angle)))
 
+  ;; hand-reach
+  (<- (desig:action-grounding ?desig (hand-reach ?desig))
+    (desig-prop ?desig (:type   :hand-reaching))
+    (desig-prop ?desig (:hand ?hand))
+    (desig-prop ?desig (:pos ?pos)))
+
   ;; Path following
   (<- (desig:action-grounding ?desig (move-on-path ?desig))
     (desig-prop ?desig (:type   :moving-on-path))
