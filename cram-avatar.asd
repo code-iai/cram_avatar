@@ -1,10 +1,18 @@
 (defsystem cram-avatar
-  :depends-on (roslisp cram-language actionlib 
-               cl-transforms geometry_msgs-msg
-               iai_avatar_msgs-msg iai_avatar_msgs-srv
-               cram-designators cram-prolog actionlib_msgs-msg
-               cram-process-modules cram-language-designator-support
-               cram-executive)
+  :depends-on (:roslisp
+	       :actionlib_msgs-msg 
+	       :actionlib 
+	       :geometry_msgs-msg
+               :iai_avatar_msgs-msg 
+	       :iai_avatar_msgs-srv
+               :cl-transforms
+	       :cram-language
+               :cram-designators 
+	       :cram-prolog 
+               :cram-process-modules 
+	       :cram-language-designator-support
+               :cram-executive 
+	       :cram-cloud-logger)
 
   :components
   ((:module "src"
@@ -18,7 +26,7 @@
                                                    "control-avatar"
                                                    "year-two-demo"
                                                    "motion-designators"))
-             (:file "high-level-plans" :depends-on ("package"
+             (:file "fetch-and-place" :depends-on ("package"
                                                    "motion-designators"
                                                    "action-designators"
                                                    "process-modules"))
