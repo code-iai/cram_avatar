@@ -94,6 +94,43 @@
     (desig-prop ?desig (:from-hand ?from-hand))
     (desig-prop ?desig (:at        ?location)))
 
-)
+  ;; Placing
+  (<- (desig:action-grounding ?desig (put-down ?desig))
+    (desig-prop ?desig (:type      :putting-down))
+    (desig-prop ?desig (:at        ?location)))
 
+  ;; Placing-at
+  (<- (desig:action-grounding ?desig (place-at ?desig))
+    (desig-prop ?desig (:type      :placing-at))
+    (desig-prop ?desig (:at        ?location)))
+
+  ;; Releasing
+  (<- (desig:action-grounding ?desig (release ?desig))
+    (desig-prop ?desig (:type      :releasing))
+    (desig-prop ?desig (:from-hand ?from-hand)))
+
+  ;;Fetch-and-place
+  (<- (desig:action-grounding ?desig (fetch-and-place ?desig))
+    (desig-prop ?desig (:type      :fetching-and-placing))
+    (desig-prop ?desig (:object    ?object))
+    (desig-prop ?desig (:at        ?location)))
+
+  ;;Fetch
+  (<- (desig:action-grounding ?desig (fetch ?desig))
+    (desig-prop ?desig (:type      :fetching))
+    (desig-prop ?desig (:object    ?object))
+    (desig-prop ?desig (:with-hand        ?with-hand)))
+
+  ;;Transporting
+  (<- (desig:action-grounding ?desig (transport ?desig))
+    (desig-prop ?desig (:type      :transporting))
+    (desig-prop ?desig (:object    ?object))
+    (desig-prop ?desig (:to        ?location)))
+
+  ;; MovingTo
+  (<- (desig:action-grounding ?desig (move-to ?desig))
+    (desig-prop ?desig (:type   :moving-to))
+    (desig-prop ?desig (:path ?path)))
+
+  )
 
