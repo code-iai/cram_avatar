@@ -1,2 +1,3 @@
 - git: {local-name: iai_avatar_msgs, uri: 'https://github.com/code-iai/iai_avatar_msgs', version: master }
 - git: {local-name: iai_avatar_control, uri: 'https://github.com/code-iai/iai_avatar_control', version: master }
+- git: {local-name: cram_avatar, uri: 'https://github.com/abdelker/cram_avatar', version: neemhub }
