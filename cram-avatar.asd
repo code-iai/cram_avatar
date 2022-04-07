@@ -26,9 +26,12 @@
                                                    "control-avatar"
                                                    "year-two-demo"
                                                    "motion-designators"))
+<<<<<<< HEAD
              (:file "shopping" :depends-on ("package"
+=======
+             (:file "simple-plan" :depends-on ("package"
+>>>>>>> 9adcba2017b876f332e81a2676f1b444597a5969
                                                    "motion-designators"
                                                    "action-designators"
                                                    "process-modules"))
              (:file "qna-action-client" :depends-on ("package"))))))
-
