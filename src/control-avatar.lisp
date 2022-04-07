@@ -36,7 +36,7 @@
                               #'sync-cb)))
 
 
-defun wait-for-belief-state (state)
+(defun wait-for-belief-state (state)
       (wait-for (eq (fl-funcall #'std_msgs-msg:data *belief-state*) state)))
 
 ;;(defun get-belief-state (state)

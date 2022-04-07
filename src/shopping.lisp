@@ -26,7 +26,7 @@
 (defun shop (&key ((:product ?product)) &allow-other-keys)
     ( let ((?to *shoppingbasket_place*) (?hand *hand*) (?object *ShoppingBasket*))
     
-    ;;(exe:perform (desig:an action (type moving-on-path) (path ?to)))
+    (exe:perform (desig:an action (type moving-on-path) (path ?to)))
     (exe:perform (desig:an action (type fetching) (object ?object) (with-hand ?hand)))     
       
   ))
