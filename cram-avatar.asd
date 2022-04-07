@@ -26,7 +26,7 @@
                                                    "control-avatar"
                                                    "year-two-demo"
                                                    "motion-designators"))
-             (:file "fetch-and-place" :depends-on ("package"
+             (:file "shopping" :depends-on ("package"
                                                    "motion-designators"
                                                    "action-designators"
                                                    "process-modules"))

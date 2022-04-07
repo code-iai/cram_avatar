@@ -1,6 +1,11 @@
 (in-package :aia)
  
 (def-fact-group avatar-action-designators (action-grounding)
+;; Shopping
+  (<- (desig:action-grounding ?desig (shop ?desig))
+    (desig-prop ?desig (:type  :shopping))
+    (desig-prop ?desig (:product ?product))
+    )
 
   ;; Add Topping
   (<- (desig:action-grounding ?desig (add-topping ?desig))
