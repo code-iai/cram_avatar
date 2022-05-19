@@ -5,3 +5,4 @@ src/.\#interaction-test.lisp
 src/motion-designators.lisp~
 src/process-modules.lisp~
 src/interaction-test.lisp~
+src/\#interaction-test.lisp\#
