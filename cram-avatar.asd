@@ -26,7 +26,7 @@
                                                    "control-avatar"
                                                    "year-two-demo"
                                                    "motion-designators"))
-             (:file "shopping" :depends-on ("package"
+             (:file "interaction-test" :depends-on ("package"
                                                    "motion-designators"
                                                    "action-designators"
                                                    "process-modules"))

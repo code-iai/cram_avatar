@@ -1,6 +1,11 @@
 (in-package :aia)
  
 (def-fact-group avatar-action-designators (action-grounding)
+  
+  (<- (desig:action-grounding ?desig (speak ?desig))
+      (desig-prop ?desig (:type  :speaking))
+     ;; (desig-prop ?desig (:agent ?agent))
+      )
 ;; Shopping
   (<- (desig:action-grounding ?desig (shop ?desig))
     (desig-prop ?desig (:type  :shopping))
