@@ -1,4 +1,4 @@
-(defpackage :cram-avatar
+(defpackage :cram-avatar-action-clients
   (:nicknames :aia)
   (:use :cpl
         :roslisp

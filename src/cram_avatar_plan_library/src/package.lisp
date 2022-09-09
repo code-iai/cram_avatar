@@ -1,4 +1,4 @@
-(defpackage :cram-avatar
+(defpackage :cram-avatar-plan-library
   (:nicknames :aia)
   (:use :cpl
         :roslisp
