@@ -1,4 +1,4 @@
-(defpackage :cram-avatar
+(defpackage :cram-avatar-control-interface
   (:nicknames :aia)
   (:use :cpl
         :roslisp

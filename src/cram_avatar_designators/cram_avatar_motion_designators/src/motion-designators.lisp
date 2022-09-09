@@ -1,5 +1,22 @@
 (in-package :aia)
- 
+
+;;
+
+
+  ;; "Represents a communicative motion."
+  ;; receiver
+;; intend
+
+(def-fact-group avatar-communication-motion-designators (motion-grounding)
+
+  ;; path following
+  (<- (desig:motion-grounding ?desig (tell nil))
+      (desig-prop ?desig (:type :telling))
+      (desig-prop ?desig (:receiver ?agent))
+      ;; (lisp-fun make-avatar-motion :receiver ?agent ?motion)
+      ))
+  
+
 (defstruct avatar-motion
   "Represents a motion."
   x_val y_val z_val
@@ -12,6 +29,12 @@
  
 ;; for each kind of motion, check for and extract the necessary info
 (def-fact-group avatar-motion-designators (motion-grounding)
+
+  ;; (<- (desig:motion-grounding ?desig (tell nil))
+  ;;     (desig-prop ?desig (:type :telling))
+  ;;   ;;  (desig-prop ?desig (:receiver ?agent))
+  ;;    ;; (lisp-fun make-avatar-motion :receiver ?agent ?motion)
+  ;;     )
  
   ;; path following
   (<- (desig:motion-grounding ?desig (follow ?motion))

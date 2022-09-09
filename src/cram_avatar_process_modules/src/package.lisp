@@ -1,4 +1,4 @@
-(defpackage :cram-avatar
+(defpackage :cram-avatar-process-modules
   (:nicknames :aia)
   (:use :cpl
         :roslisp
