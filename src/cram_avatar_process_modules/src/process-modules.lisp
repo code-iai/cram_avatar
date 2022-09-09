@@ -1,6 +1,32 @@
 (in-package :aia)
 
-;; Process module for motion
+(def-process-module avatar-communication (motion-designator)
+  (roslisp:ros-info (avatar-process-modules)
+                    "Avatar manipulation invoked with motion designator `~a'."
+                    motion-designator)
+  (destructuring-bind (command motion) (reference motion-designator)
+    (ecase command
+      (tell
+        (let ((cmd "tell"))
+          (format t  "tell-test"))))))
+
+;; ;; Process module for communication
+;; (def-process-module avatar-communication (motion-designator)
+;;   (roslisp:ros-info (avatar-process-modules)
+;;                     "Avatar communication invoked with motion designator `~a'."
+;;                     motion-designator)
+;;   (destructuring-bind (command motion) (reference motion-designator)
+;;     (ecase command
+;;       (tell
+;;        (let ((cmd "tell"))
+;;          (format t  "tell-test")))
+;;       )))
+
+
+
+
+
+;; Process module for navigation
 (def-process-module avatar-navigation (motion-designator)
   (roslisp:ros-info (avatar-process-modules)
                     "Avatar navigation invoked with motion designator `~a'."
@@ -30,7 +56,10 @@
             (write-to-string x) " " 
             (write-to-string y) " " 
             (write-to-string z))))
-             (call-send-console-command cmd))))
+            (call-send-console-command cmd))))
+    ;; (tell
+      ;; (let ((cmd "tell"))
+        ;; (format t  "tell-test")))
     )))
 
 ;; Process modules for hand manipulations
@@ -42,10 +71,10 @@
     (ecase command
       (cut
         (let ((cmd "cut"))
-           (call-send-console-command cmd)))
+          (format t  "tell-test")))
       (spoon
         (let ((cmd "spoon"))
-           (call-send-console-command cmd)))
+          (call-send-console-command cmd)))
       (press
         (let ((cmd (concatenate 'string "press " (avatar-press-motion-button motion))))
           (call-send-console-command cmd)))
