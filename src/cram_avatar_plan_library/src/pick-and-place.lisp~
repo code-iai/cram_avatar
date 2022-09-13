@@ -1,4 +1,4 @@
-(in-package :av-plan)
+(in-package :aia)
 
 
 (defvar *destination1* "SM_Table_1" "location name for placing the plate")

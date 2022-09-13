@@ -1,5 +1,5 @@
 (defpackage :cram-avatar-process-modules
-  (:nicknames :aia)
+  (:nicknames :av-pm)
   (:use :cpl
         :roslisp
         :cl-transforms

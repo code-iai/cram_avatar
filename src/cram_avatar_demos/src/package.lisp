@@ -1,5 +1,5 @@
 (defpackage :cram-avatar-demos
-  (:nicknames :aia)
+  (:nicknames :av-demos)
   (:use :cpl
         :roslisp
         :cl-transforms

@@ -1,4 +1,4 @@
-(in-package :aia)
+(in-package :av-plan)
 
 (defvar *hand* "right" "Hand to be used")
 

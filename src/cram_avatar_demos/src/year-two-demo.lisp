@@ -1,4 +1,4 @@
-(in-package :aia)
+(in-package :av-demos)
 
 (def-cram-function run-year-two-demo ()
   "Sends velocity commands until `goal' is reached."

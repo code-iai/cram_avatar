@@ -13,7 +13,7 @@
 	           :cram-cloud-logger
                :iai_avatar_msgs-msg
 	           :iai_avatar_msgs-srv
-	           :cram_avatar_control_interface
+	           :cram-avatar-control-interface
 	           )
 
   :components
