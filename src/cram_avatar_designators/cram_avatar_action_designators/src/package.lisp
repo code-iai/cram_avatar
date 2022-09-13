@@ -1,5 +1,5 @@
 (defpackage :cram-avatar-action-designators
-  (:nicknames :aia)
+  (:nicknames :av-acdes)
   (:use :cpl
         :roslisp
         :cl-transforms

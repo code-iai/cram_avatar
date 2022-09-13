@@ -1,4 +1,4 @@
-(in-package :aia)
+(in-package :av-pm)
 
 (def-process-module avatar-communication (motion-designator)
   (roslisp:ros-info (avatar-process-modules)

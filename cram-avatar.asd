@@ -11,8 +11,15 @@
 	       :cram-language-designator-support
                :cram-executive 
 	       :cram-cloud-logger
-              :iai_avatar_msgs-msg
-	       :iai_avatar_msgs-srv)
+               :iai_avatar_msgs-msg
+	       :iai_avatar_msgs-srv
+               :cram-avatar-control-interface
+               :cram-avatar-action-clients
+               :cram-avatar-demos
+               :cram-avatar-action-designators
+               :cram-avatar-motion-designators
+               :cram-avatar-plan-library
+               :cram-avatar-process-modules)
 
   :components
   ((:module "src"

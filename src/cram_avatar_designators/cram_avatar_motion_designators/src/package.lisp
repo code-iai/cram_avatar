@@ -1,5 +1,5 @@
 (defpackage :cram-avatar-motion-designators
-  (:nicknames :aia)
+  (:nicknames :av-modes)
   (:use :cpl
         :roslisp
         :cl-transforms

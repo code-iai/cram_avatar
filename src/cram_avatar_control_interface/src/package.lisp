@@ -1,5 +1,5 @@
 (defpackage :cram-avatar-control-interface
-  (:nicknames :aia)
+  (:nicknames :av-con)
   (:use :cpl
         :roslisp
         :cl-transforms

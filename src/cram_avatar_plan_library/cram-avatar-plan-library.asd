@@ -13,9 +13,9 @@
 	           :cram-cloud-logger
                :iai_avatar_msgs-msg
 	           :iai_avatar_msgs-srv
-	           :cram_avatar_action_designators
-	           :cram_avatar_motion_designators
-	           :cram_avatar_process_modules)
+	           :cram-avatar-action-designators
+	           :cram-avatar-motion-designators
+	           :cram-avatar-process-modules)
 
   :components
   ((:module "src"

@@ -1,5 +1,5 @@
 (defpackage :cram-avatar-action-clients
-  (:nicknames :aia)
+  (:nicknames :av-accli)
   (:use :cpl
         :roslisp
         :cl-transforms

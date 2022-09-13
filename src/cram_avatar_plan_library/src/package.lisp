@@ -1,5 +1,5 @@
 (defpackage :cram-avatar-plan-library
-  (:nicknames :aia)
+  (:nicknames :av-plan)
   (:use :cpl
         :roslisp
         :cl-transforms

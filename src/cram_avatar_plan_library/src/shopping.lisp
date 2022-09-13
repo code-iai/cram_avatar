@@ -1,4 +1,4 @@
-(in-package :aia)
+(in-package :av-plan)
 
 (defvar *ShoppingBasket*)
 (setq *ShoppingBasket* (desig:an object (type shoppingbasket) (name "SM_ShoppingBasket_2")))

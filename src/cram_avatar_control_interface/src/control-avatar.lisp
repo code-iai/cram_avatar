@@ -1,4 +1,4 @@
-(in-package :aia)
+(in-package :av-con)
 
 (defvar *belief-state* (make-fluent :name :belief-state :value 0) "current belief state of avatar")
 (defvar *belief-sub* nil "belief ROS subscriber")
