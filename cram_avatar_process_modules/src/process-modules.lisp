@@ -26,9 +26,10 @@
 
 
 
+
 ;; Process module for navigation
 (def-process-module avatar-navigation (motion-designator)
-  (roslisp:ros-info (av-modes::avatar-process-modules)
+  (roslisp:ros-info (avatar-process-modules)
                     "Avatar navigation invoked with motion designator `~a'."
                     motion-designator)
   (destructuring-bind (command motion) (reference motion-designator)
@@ -64,7 +65,7 @@
 
 ;; Process modules for hand manipulations
 (def-process-module avatar-manipulation (motion-designator)
-  (roslisp:ros-info (av-modes::avatar-process-modules)
+  (roslisp:ros-info (avatar-process-modules)
                     "Avatar manipulation invoked with motion designator `~a'."
                     motion-designator)
   (destructuring-bind (command motion) (reference motion-designator)
@@ -159,9 +160,9 @@
       (let ((target (desig:a motion (type moving) (x_val ?x) (y_val ?y) (z_val ?z))))
         (pm-execute 'avatar-navigation target)))))
 
-(defun follow-path (?path)
+(defun follow (?path)
   (top-level
-    (with-process-modules-running (av-modes::avatar-navigation)
+    (with-process-modules-running (avatar-navigation)
       (let ((target (desig:a motion (type moving) (path ?path))))
         (pm-execute 'avatar-navigation target)))))
 
@@ -272,14 +273,5 @@
         (let ((target (desig:a motion (type placing) (place ?place))))
           (pm-execute 'avatar-manipulation target))))))
 
-(defun place-object-at (?x ?y ?z &optional ?hand)
-  ( if ?hand
-    (top-level
-      (with-process-modules-running (av-modes::avatar-manipulation)
-        (let ((target (desig:a motion (type placing) (from_hand ?hand) (x_val ?x) (y_val ?y) (z_val ?z))))
-          (pm-execute 'avatar-manipulation target))))
-    (top-level
-      (with-process-modules-running (av-modes::avatar-manipulation)
-        (let ((target (desig:a motion (type placing) (x_val ?x) (y_val ?y) (z_val ?z))))
-          (pm-execute 'avatar-manipulation target))))))
+
 

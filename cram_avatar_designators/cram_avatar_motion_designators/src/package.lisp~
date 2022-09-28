@@ -1,0 +1,9 @@
+(defpackage :cram-avatar-motion-designators
+  (:nicknames :av-modes)
+  ( (:use :cpl
+        :roslisp
+        :cram-designators
+        :cram-language-designator-support)
+  (:import-from :cram-prolog :def-fact-group :<- :lisp-fun)
+  )
+  )

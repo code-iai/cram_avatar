@@ -24,11 +24,11 @@
 
 ;; Task
 (defun FetchPlace()
-  ( let ((?object-to-fetch *object*)
+  (let ((?object-to-fetch *object*)
          (?placing_loc *location*))
     (top-level
-      (with-process-modules-running (avatar-navigation avatar-manipulation)
-        (exe:perform (desig:an action (type fetching-and-placing) (object ?plate) (at ?location))))
+      (with-process-modules-running (av-pm::avatar-navigation av-pm::avatar-manipulation)
+        (exe:perform (desig:an action (type fetching-and-placing) (object ?object-to-fetch) (at ?placing_loc))))
       )
     )
   )
@@ -57,7 +57,7 @@
   )
 
 (defun hand-reach (&key ((:hand ?hand)) ((:pos ?pos)) &allow-other-keys)	
-    (pm-execute 'avatar-manipulation (desig:a motion (type reaching-w-hand) (hand ?hand) (pos ?pos)))
+    (pm-execute 'av-pm::avatar-manipulation (desig:a motion (type reaching-w-hand) (hand ?hand) (pos ?pos)))
 )
    
  ;; (defun grasp (&key ((:item ?item)) (:hand  ?hand)) &allow-other-keys)
@@ -65,7 +65,7 @@
 
 (defun pick-up (&key ((:object ?object)) ((:with-hand ?with-hand)) &allow-other-keys)
   (let ((?target  (desig:desig-prop-value ?object :name)))
-   (pm-execute 'avatar-manipulation (desig:a motion (type grasping) (item ?target) (hand ?with-hand) (hold t))))
+   (pm-execute 'av-pm::avatar-manipulation (desig:a motion (type grasping) (item ?target) (hand ?with-hand) (hold t))))
 
    )
 
@@ -81,7 +81,7 @@
   )
   
 (defun move-to (&key ((:path ?path)) &allow-other-keys)
-  (pm-execute 'avatar-navigation (desig:a motion (type moving) (path ?path)))
+  (pm-execute 'av-pm::avatar-navigation (desig:a motion (type moving) (path ?path)))
 
   )
 
@@ -100,7 +100,7 @@
     (let ((?in_x (float (cl-transforms:x ?location) 1.0)) 
         (?in_y (float (cl-transforms:y ?location) 1.0)) 
         (?in_z (float (cl-transforms:z ?location) 1.0 )))
-   (pm-execute 'avatar-manipulation (desig:a motion (type placing) (x_val ?in_x) (y_val ?in_y) (z_val ?in_z)))
+   (pm-execute 'av-pm::avatar-manipulation (desig:a motion (type placing) (x_val ?in_x) (y_val ?in_y) (z_val ?in_z)))
       )
   
    )

@@ -15,11 +15,13 @@
 	           :iai_avatar_msgs-srv
 	           :cram-avatar-action-designators
 	           :cram-avatar-motion-designators
-	           :cram-avatar-process-modules)
+	           :cram-avatar-process-modules
+	           )
 
   :components
   ((:module "src"
             :components
             ((:file "package")
-             (:file "fetch-and-place" :depends-on ("package"))))))
+             (:file "fetch-and-place" :depends-on ("package"))
+             (:file "init" :depends-on ("package"))))))
 
