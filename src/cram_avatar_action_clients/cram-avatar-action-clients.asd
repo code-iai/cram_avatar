@@ -1,10 +1,10 @@
 (defsystem cram-avatar-action-clients
   :depends-on (:roslisp
-	           :actionlib_msgs-msg
-	           :actionlib
+   	           :actionlib_msgs-msg
+   	           :actionlib
                :iai_avatar_msgs-msg
-	           :iai_avatar_msgs-srv)
-
+   	           :iai_avatar_msgs-srv)
+  
   :components
   ((:module "src"
             :components

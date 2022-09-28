@@ -19,7 +19,7 @@
 (defun ToShop()
   ( let ((?product *ShoppingBasket*))
     (top-level
-      (with-process-modules-running (avatar-navigation avatar-manipulation)
+      (with-process-modules-running (av-pm::avatar-navigation av-pm::avatar-manipulation)
         (exe:perform (desig:an action (type shopping) (product ?product))))
       )
     )

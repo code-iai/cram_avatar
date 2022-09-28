@@ -3,15 +3,15 @@
 	           :actionlib_msgs-msg
 	           :actionlib
 	           :geometry_msgs-msg
-               :cl-transforms
+             :cl-transforms
 	           :cram-language
-               :cram-designators 
+             :cram-designators 
 	           :cram-prolog
-               :cram-process-modules 
+             :cram-process-modules 
 	           :cram-language-designator-support
-               :cram-executive 
+             :cram-executive 
 	           :cram-cloud-logger
-               :iai_avatar_msgs-msg
+             :iai_avatar_msgs-msg
 	           :iai_avatar_msgs-srv
 	           :cram-avatar-action-designators
 	           :cram-avatar-motion-designators
@@ -21,5 +21,5 @@
   ((:module "src"
             :components
             ((:file "package")
-             (:file "shopping" :depends-on ("package"))))))
+             (:file "fetch-and-place" :depends-on ("package"))))))
 

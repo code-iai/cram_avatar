@@ -14,6 +14,8 @@
                :iai_avatar_msgs-msg
 	           :iai_avatar_msgs-srv
 	           :cram-avatar-control-interface
+	          ;; :cram-avatar-plan-library
+	          ;; :cram-avatar-action-designators
 	           )
 
   :components

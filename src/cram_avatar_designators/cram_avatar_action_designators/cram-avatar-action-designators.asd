@@ -1,19 +1,19 @@
 (defsystem cram-avatar-action-designators
   :depends-on (:roslisp
-	           :actionlib_msgs-msg
-	           :actionlib
-	           :geometry_msgs-msg
+   	           :actionlib_msgs-msg
+   	           :actionlib
+   	           :geometry_msgs-msg
                :cl-transforms
-	           :cram-language
+   	           :cram-language
                :cram-designators 
-	           :cram-prolog
+   	           :cram-prolog
                :cram-process-modules 
-	           :cram-language-designator-support
+   	           :cram-language-designator-support
                :cram-executive 
-	           :cram-cloud-logger
+   	           :cram-cloud-logger
                :iai_avatar_msgs-msg
-	           :iai_avatar_msgs-srv)
-
+   	           :iai_avatar_msgs-srv)
+  
   :components
   ((:module "src"
             :components

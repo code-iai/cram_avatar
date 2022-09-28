@@ -1,11 +1,11 @@
 (in-package :av-plan)
 
 
-(defvar *destination1* "SM_Table_1" "location name for placing the plate")
+(defvar *destination1* "path" "location name for placing the plate")
 (defvar *hand* "right" "use right hand")
-(defvar *placing_loc* (make-3d-vector -289 -103 76) " location for placing the plate")
-(defvar *plate*)
-(setq *plate* (desig:an object (type plate) (name "SM_ClassicPlate16cm_1")))
+(defvar *location* (make-3d-vector -289 -103 76) " location for placing the plate")
+(defvar *object*)
+(setq *object* (desig:an object (type milk) (name "SM_Object")))
 
 
 (defun logging-scenario()
@@ -24,8 +24,8 @@
 
 ;; Task
 (defun FetchPlace()
-  ( let ((?plate *plate*)
-         (?location *placing_loc*))
+  ( let ((?object-to-fetch *object*)
+         (?placing_loc *location*))
     (top-level
       (with-process-modules-running (avatar-navigation avatar-manipulation)
         (exe:perform (desig:an action (type fetching-and-placing) (object ?plate) (at ?location))))
