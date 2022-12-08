@@ -14,13 +14,15 @@
                :iai_avatar_msgs-msg
 	           :iai_avatar_msgs-srv
 	           :cram-avatar-control-interface
-	          ;; :cram-avatar-plan-library
-	          ;; :cram-avatar-action-designators
+	           :cram-avatar-plan-library
 	           )
 
   :components
   ((:module "src"
             :components
             ((:file "package")
-	         (:file "year-two-demo" :depends-on ("package"))))))
+	         (:file "year-two-demo" :depends-on ("package"))
+			 (:file "fetch-place-demo" :depends-on ("package"))
+			 
+			 ))))
 

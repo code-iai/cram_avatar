@@ -6,7 +6,7 @@
 	"Initialize ROS Communication"
 	(start-ros-node
          "cram-client")
-	(av-con::init-ros-avatar
+	(init-ros-avatar
       "avatar"))
 
 

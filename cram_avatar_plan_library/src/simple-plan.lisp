@@ -1,7 +1,7 @@
 (in-package :av-plan)
 
 (defvar *path* "spline" "Name of spline to follow")
-(defvar *hand* "right" "Hand to be used")
+(defvar *hand* "right" "hand to be used")
 (defvar *placing_loc* (make-3d-vector 218 -296 88) " location for placing the product")
 (defvar *rot* -90)
 

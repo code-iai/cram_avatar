@@ -1,0 +1,53 @@
+(in-package :av-plan)
+
+(defparameter paths-list (list  "Door_to_Sony" "Sony_to_Nikon" "Nikon_to_Canon"))
+
+(defvar *path* nil "path to follow")
+(defvar ?path  nil "path to follow")
+
+;; Task
+(defun Trial132(agent)
+  (setf ?path *path*)
+  (init-ros-avatar agent)
+    (top-level
+     (with-process-modules-running (avatar-navigation)
+                                   (mapcar
+                                    (lambda
+                                      (sleep 4)
+                                      (it)
+                                      (print "1.")
+                                      (print ?path)
+                                      (sleep 4)
+                                      
+                                     ;; (setf ?path *path*)
+                                     ;; (print ?path)
+                                     ;; (sleep 4)
+                                      
+                                      (setf ?path (nth it paths-list))
+                                      (print "2.")
+                                      (print ?path)
+                                     ;; (sleep )
+                                      
+                                      (exe:perform (desig:an action (type moving-to) (path ?path)))
+                                     ;; (sleep 4)
+
+                                      
+                                     )
+                                    
+                                    '(0 1 2))
+                                   )))
+
+(defun move-to (&key ((:path ?path)) &allow-other-keys)
+  
+  ;;(sleep 5)
+  (pm-execute 'avatar-navigation (desig:a motion (type moving) (path ?path)))
+  (print "3.")
+  (setf ?path *path*)
+  (print ?path)
+  )
+    
+ ;; (loop for it in 'paths-list
+  ;;     do((setf *path* (nth it paths-list))
+
+
+

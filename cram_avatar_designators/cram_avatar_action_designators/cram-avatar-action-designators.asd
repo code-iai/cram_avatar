@@ -1,7 +1,8 @@
 (defsystem cram-avatar-action-designators
   :depends-on (:roslisp
    	       :cram-language
-               :cram-designators 
+               :cram-designators
+               :cram-process-modules  
    	        :cram-prolog
    	        :cram-language-designator-support
    	           )
@@ -10,5 +11,6 @@
   ((:module "src"
             :components
             ((:file "package")
-	         (:file "action-designators" :depends-on ("package"))))))
+	         (:file "action-designators" :depends-on ("package"))
+           ))))
 

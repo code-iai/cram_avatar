@@ -5,10 +5,7 @@
         :cl-transforms
         :cram-designators
         :cram-process-modules
-        :cram-language-designator-support
-        :cram-avatar-action-designators
-	:cram-avatar-motion-designators
-	:cram-avatar-process-modules)
+        :cram-language-designator-support)
   (:import-from :cram-prolog :def-fact-group :<- :lisp-fun)
   (:export
    :call-qna-action

@@ -1,10 +1,24 @@
-(in-package :av-acdes)
+(in-package :av-plan)
 
-(def-fact-group avatar-action-designators (action-grounding)  
-  (<- (desig:action-grounding ?desig (speak ?desig))
-      (desig-prop ?desig (:type  :speaking))
-      ;; (desig-prop ?desig (:agent ?agent))
+(def-fact-group avatar-action-designators (action-grounding) 
+
+  (<- (desig:action-grounding ?desig (imagine ?desig))
+      (desig-prop ?desig (:type  :imagining))
+      (desig-prop ?desig (:motion ?path))
+      (desig-prop ?desig (:communication ?keywords))
+
       )
+ 
+  (<- (desig:action-grounding ?desig (tell ?desig))
+      (desig-prop ?desig (:type  :telling))
+      (desig-prop ?desig (:keywords ?keywords))
+      )
+
+   (<- (desig:action-grounding ?desig (ask ?desig))
+      (desig-prop ?desig (:type  :asking))
+      (desig-prop ?desig (:keywords ?keywords))
+      )
+
   ;; Shopping
   (<- (desig:action-grounding ?desig (shop ?desig))
       (desig-prop ?desig (:type  :shopping))
@@ -142,7 +156,6 @@
       (desig-prop ?desig (:path ?path)))
  
   )
-
 
 
 

@@ -11,7 +11,7 @@
 
 (defvar *spline* "spline")
 
-(defvar *hand* "right" "Hand to be used")
+(defvar *hand* "right" "hand to be used")
 
 
 
@@ -19,7 +19,7 @@
 (defun ToShop()
   ( let ((?product *ShoppingBasket*))
     (top-level
-      (with-process-modules-running (av-pm::avatar-navigation av-pm::avatar-manipulation)
+      (with-process-modules-running (avatar-navigation avatar-manipulation)
         (exe:perform (desig:an action (type shopping) (product ?product))))
       )
     )
